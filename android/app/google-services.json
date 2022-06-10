@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "692255626884",
+    "project_id": "crypto-wallet-89985",
+    "storage_bucket": "crypto-wallet-89985.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:692255626884:android:7cfdac71ee0ce5915554d1",
+        "android_client_info": {
+          "package_name": "com.cryptowallet.crypto_wallet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "692255626884-bu4h3r3dnmmvd6o9u1keriqmv4m64o05.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTEobQTpkZmBctqWYs6Vi2dNaFoHzfdl4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "692255626884-bu4h3r3dnmmvd6o9u1keriqmv4m64o05.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:692255626884:android:1578e8b82dae214a5554d1",
+        "android_client_info": {
+          "package_name": "com.goyal.my_crypto_wallet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "692255626884-bu4h3r3dnmmvd6o9u1keriqmv4m64o05.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTEobQTpkZmBctqWYs6Vi2dNaFoHzfdl4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "692255626884-bu4h3r3dnmmvd6o9u1keriqmv4m64o05.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

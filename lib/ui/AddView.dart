@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../net/flutterfire.dart';
+import 'home.dart';
+
 class Add_View extends StatefulWidget {
   const Add_View({Key? key}) : super(key: key);
 
@@ -15,7 +18,7 @@ class _Add_ViewState extends State<Add_View> {
     "DOT",
   ];
   String dropdownValue = "BITCOIN";
-  TextEditingController _amountContoller = TextEditingController();
+  final TextEditingController _amountContoller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +44,34 @@ class _Add_ViewState extends State<Add_View> {
                   );
                 },
               ).toList(),
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width / 1.5,
+              // width: MediaQuery.of(context).size.width/1.5,
+              child: TextFormField(
+                controller: _amountContoller,
+                decoration: InputDecoration(
+                  labelText: "Amount of coin",
+                ),
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 35,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width / 1.7,
+              height: 40,
+              child: MaterialButton(
+                onPressed: () async {
+                  await addCoin(dropdownValue, _amountContoller.text);
+                  Navigator.of(context).pop();
+                },
+                child: Text("ADD"),
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.0),
+                color: Colors.white,
+              ),
             ),
           ],
         ),

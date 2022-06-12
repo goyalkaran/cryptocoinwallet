@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
           'Add Coin to your account',
           style: TextStyle(color: Colors.black),
         ),
-        backgroundColor: Colors.yellow,
+        backgroundColor: Colors.green,
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -46,14 +46,21 @@ class _HomePageState extends State<HomePage> {
                   children: snapshot.data!.docs.map((document) {
                     return Container(
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text("Coin Name: ${document.id}"),
-                          Text("Amount Owned: ${document.data() != null ? [
-                              'Amount'
-                            ] : 0}"),
-                        ],
-                      ),
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  "Coin Name: ${document.id}",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                Text(
+                                  "Amount Owned: ${document.get('Amount')}",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ]),
                     );
                   }).toList(),
                 );

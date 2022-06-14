@@ -12,12 +12,16 @@ class Add_View extends StatefulWidget {
 
 class _Add_ViewState extends State<Add_View> {
   List<String> coins = [
-    "BITCOIN",
-    "WAZIRX",
-    "USDT",
-    "DOT",
+    'bitcoin',
+    'wazirx',
+    'tether',
+    'polkadot',
+    'tron',
+    'dogecoin',
+    'ethereum',
+    'binancecoin',
   ];
-  String dropdownValue = "BITCOIN";
+  String dropdownValue = 'bitcoin';
   final TextEditingController _amountContoller = TextEditingController();
   @override
   Widget build(BuildContext context) {

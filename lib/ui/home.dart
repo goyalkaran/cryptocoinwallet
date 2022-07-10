@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:my_crypto_wallet/net/api_methods.dart';
+import 'package:my_crypto_wallet/net/flutterfire.dart';
 import 'AddView.dart';
 
 class HomePage extends StatefulWidget {
@@ -74,90 +75,103 @@ class _HomePageState extends State<HomePage> {
     }
 
     return Scaffold(
+      // backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text(
-          'Add Coin to your account',
-          style: TextStyle(color: Colors.white70),
+        title: const Text(
+          'Add Coin',
+          style: TextStyle(
+              color: Colors.white,
+              fontFamily: "BalooBhai",
+              fontSize: 22,
+              fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.black87,
+        backgroundColor: Colors.green.shade400,
       ),
       body: Container(
         decoration: BoxDecoration(
-          color: Colors.black,
+          color: Colors.white,
         ),
-        width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         child: Center(
           child: StreamBuilder(
-              stream: FirebaseFirestore.instance
-                  .collection('User')
-                  .doc(FirebaseAuth.instance.currentUser?.uid)
-                  .collection('Coins')
-                  .snapshots(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                return ListView(
-                  children: snapshot.data!.docs.map((document) {
-                    return Container(
-
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              "Coin Name: ${(document.id).toUpperCase()}",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            Text(
-                              "Amount Owned: \₹${getValues(document.id, document.get('Amount')).toStringAsFixed(2)}",
-                              style: TextStyle(color: Colors.white),
-                            ),
-
-                          ]),
-                    );
-                  }).toList(),
+            stream: FirebaseFirestore.instance
+                .collection('Users')
+                .doc(FirebaseAuth.instance.currentUser?.uid)
+                .collection('Coins')
+                .snapshots(),
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (!snapshot.hasData) {
+                return Center(
+                  child: CircularProgressIndicator(),
                 );
-              }),
+              }
+              return ListView(
+                children: snapshot.data!.docs.map((document) {
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      top: 5,
+                      left: 15,
+                      right: 15,
+                    ),
+                    child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.green.shade200,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        height: MediaQuery.of(context).size.height / 12,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              width: 5.0,
+                            ),
+                            Text(
+                              "Coin: ${document.id}",
+                              style: TextStyle(
+                                fontSize: 19,
+                                color: Colors.white,fontFamily: "BalooBhai",
+                              ),
+                            ),
+                            Text(
+                              "Price: ₹${getValues(document.id, document.get('Amount')).toStringAsFixed(2)}",
+                              style: TextStyle(
+                                fontSize: 19,
+                                color: Colors.white,fontFamily: "BalooBhai",
+                              ),
+                            ),
+                            IconButton(
+                                onPressed: () async {
+                                  await removeCoin(document.id);
+                                },
+                                icon: Icon(
+                                  Icons.delete_forever,
+                                  color: Colors.white,
+                                ))
+                          ],
+                        )),
+                  );
+                }).toList(),
+              );
+            },
+          ),
         ),
       ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-
-          FloatingActionButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Add_View()),
-              );
-            },
-            child: Icon(
-              Icons.add,
-              color: Colors.white,
-            ),
-            backgroundColor: Colors.black,
-          ),
-          FloatingActionButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Add_View()),
-              );
-            },
-            child: Icon(
-              Icons.add_outlined,
-              color: Colors.white,
-            ),
-            backgroundColor: Colors.black,
-          ),
-        ],
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Add_View()),
+          );
+        },
+        child: Icon(
+          Icons.add,
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.green.shade200,
       ),
-
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

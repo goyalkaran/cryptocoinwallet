@@ -27,13 +27,21 @@ class _Add_ViewState extends State<Add_View> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Select Coins"),
+        title: Text(
+          "Select Coins",
+          style: TextStyle(color: Colors.white,fontFamily: "BalooBhai",
+            fontSize: 25,fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.green.shade400,
       ),
+      // backgroundColor: Colors.black,
       body: Center(
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
+
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             DropdownButton(
+
               value: dropdownValue,
               onChanged: (value) {
                 setState(() {
@@ -44,7 +52,8 @@ class _Add_ViewState extends State<Add_View> {
                 (String value) {
                   return DropdownMenuItem<String>(
                     value: value,
-                    child: Text(value),
+                    child: Text(value,style: TextStyle(fontFamily: "BalooBhai",
+                      fontSize: 15,),),
                   );
                 },
               ).toList(),
@@ -56,6 +65,11 @@ class _Add_ViewState extends State<Add_View> {
                 controller: _amountContoller,
                 decoration: InputDecoration(
                   labelText: "Amount of coin",
+                  labelStyle: TextStyle(
+                    color: Colors.orangeAccent,
+                    fontFamily: "BalooBhai",
+                    fontSize: 15,
+                  ),
                 ),
               ),
             ),
@@ -74,7 +88,7 @@ class _Add_ViewState extends State<Add_View> {
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15.0),
-                color: Colors.white,
+                color: Colors.green.shade200,
               ),
             ),
           ],
